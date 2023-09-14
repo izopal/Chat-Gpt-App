@@ -1,0 +1,206 @@
+/* ===================== Підключаємо шрифти =====================> */
+@font-face {
+    font-family: kamerik-3d;
+    src: url(./fonts/kamerik205-heavy.woff2);
+    font-weight: 900;
+}
+@font-face {
+    font-family: merriweather-italic-3d;
+    src: url(./fonts/merriweather-regular-italic.woff2);
+}
+/* ===================== Задаємо змінні ========================> */
+:root {
+    --backgroundColor: #221f2f; 
+    --color:           #737373;
+    --textColor:       #fff;
+    --index:           calc(1vw + 1vh);
+    --transition:      1.5s cubic-bezier(.05, .5, 0, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background:var(--backgroundColor);
+    color: var(--textColor);
+    font-family: merriweather-italic-3d;
+    user-select: none;
+}
+
+
+/* ==============================================================================================> */
+section {
+    perspective: 1000px;
+    overflow: hidden;  
+}
+section .layers_container {
+    position: relative;
+    height: 100vh;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+    will-change: transform;                                           /*вказуємо браузеру, що властивість `transform` може бути змінена, і браузер можна підготувати до цього, щоб покращити анімацію та продуктивність. */
+    transition: transform var(--transition);
+}
+section .layers_container .item {
+    position: absolute;
+    inset: -15vw;                                                    /* Внутрішній відступ -15vw від лівого, правого, верхнього та нижнього краю */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+section .layers_container .item.layer_1 {
+    transform: translateZ(-60px) scale(1.06);
+}
+section .layers_container .item.layer_2 {
+    transform: translateZ(60px) scale(.85);
+}
+section .layers_container .item.layer_2 a {
+    font-size: calc(var(--index) * 1.125);
+    color: var(--textColor);
+    text-decoration: none;
+}
+section .layers_container .item.layer_3 {
+    transform: translateZ(120px) scale(.88);
+}
+section .layers__container .item.layer_4 {
+    transform: translateZ(180px) scale(.95);
+}
+section .layers_container .item.layer_5 {
+    transform: translateZ(280px) scale(.95);
+}
+section .layers__container .item.layer_6 {
+    transform: translateZ(300px);
+}
+.layer_3, .layer_4, .layer_5, .layer_6{
+    pointer-events: none;
+}
+
+
+/* ==============================================================================================> */
+.chat {
+    --chat-size: calc(var(--index) * 40);
+	position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  	width: var(--chat-size);
+    max-width: 80%;
+	height: 100vh;
+   
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.chat .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--color);
+    border-end-end-radius: 10rem;
+    border-end-start-radius: 10rem;
+    border-color: var(--backgroundColor);
+    backdrop-filter: blur(20px);
+}
+.chat .header h3{
+    color: var(--textColor);
+    font-size: calc(var(--index) * 1.5);
+    font-weight: 900;
+    letter-spacing: calc(var(--index) * .3);
+    line-height: 1.5;
+}
+/* .chat .header h3::after{
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: rgb(255, 255, 255, .5);
+    border-radius: calc(var(--index) * .5);
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.chat .header h3:hover:after{
+    border-bottom:none;
+    transform-origin: left;
+    transform: scaleX(1);
+} */
+
+.chat .box.input {
+    --border-size: calc(var(--index) * .1);
+    display: flex;
+    background-color: transparent;
+    border-top:  var(--border-size) solid var(--color);
+    border-start-start-radius: 10rem;
+    border-start-end-radius: 10rem;
+    box-shadow: -.5rem -.5rem 1rem rgba(255, 255, 255, .1),       
+                 .5rem  .5rem 1rem rgba(0, 0, 0, .35),
+          inset -.5rem -.5rem 1rem rgba(255, 255, 255, .1),
+          inset  .5rem  .5rem 1rem rgba(0, 0, 0, .35);
+
+    /* border-color: var(--backgroundColor); */
+    backdrop-filter: blur(20px);
+}
+.chat .box.input .icon.close {
+    position: absolute;
+    top: -2.25%;
+    right: -2.25%;
+    transform: translateY(-50%);
+    height: 1.5rem;
+    width: auto;
+}
+.chat .box.input .icon.close svg {
+    display: none;
+    height: 100%;
+    width: auto;
+    filter: 
+    drop-shadow(1px 1px 1px rgba(0, 0, 0, .65));
+}
+.chat .box.input .icon.close svg path {
+    stroke: var(--textColor);
+    stroke-width: 10px;
+    fill: none;
+}
+.chat .box.input input{
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 9;
+    font-size: calc(var(--index) * 1.05);
+    font-weight: 400;
+    font-family: merriweather-italic-3d;
+    letter-spacing: calc(var(--index) * .125) ;
+    color: var(--textColor);
+    text-align: center;
+}
+.chat .box.input input::placeholder{
+    text-align: center;
+} 
+.chat .box.input button{
+    margin: 0 16px;
+    background-color: transparent;
+    border: none;
+    line-height: .5;
+    transition: all .5s linear;
+}
+.chat .box.input button .icon.send svg {
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    width: auto;
+}
+.chat .box.input button .icon.send svg path{
+    stroke: var(--textColor);
+    stroke-width: .5px;
+    fill: none;
+}
+.chat .box.input button:hover .icon.send svg path{
+    stroke-width: .5px;
+    fill: var(--textColor);
+}

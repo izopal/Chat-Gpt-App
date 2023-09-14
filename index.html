@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat GPT</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script/app.js" defer></script>
+    <script src="./script/iconClose.js" defer></script>
+    <script src="./script/rain.js" defer></script>
+ 
+</head>
+<body>
+   
+
+    <section class="layers">
+		<div class="layers_container">
+			<div class="item layer_1" style="background-image: url(./img/layer-1.jpg);"></div>
+			<div class="item layer_2">
+                <a href="https://github.com/izopal" target="_blank">coded by M.Sakal</a>
+            </div>
+            <div class="item layer_3" style="background-image: url(./img/layer-3.png);"></div>
+           	<div class="item layer_4">
+                <canvas id="canvas"></canvas>
+            </div>
+			<div class="item layer_5" style="background-image: url(./img/layer-5.png);"></div>
+			<div class="item layer_6" style="background-image: url(./img/layer-6.png);"></div>
+		</div>
+        <div class="chat">
+            <div class="header">
+                <h3>ChatGPT Bot</h3>
+            </div>
+           
+            <div class="box chat">
+                <div id="chat-log"></div>
+            </div>
+            <div class="box input">
+                <input id="user-input" type="text" placeholder="Відправити повідомлення ...">
+                <button id="btn send">
+                    <span class="icon send">
+                        <svg width="24" 
+                             height="36" 
+                             viewBox="0 0 24 24">
+                            <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.849L12 12l-7.758 2.909-1.212 4.849a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81z"/>
+                        </svg>
+                    </span>
+                </button>
+                  <span class="icon close">
+                    <svg viewBox="0 0 512 512">
+                         <path d="M368 368L144 144M368 144L144 368"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
+	</section>
+
+    
+  
+</body>
+</html>
