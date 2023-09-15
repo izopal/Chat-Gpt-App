@@ -10,16 +10,19 @@ document.addEventListener('mousemove', e => {
 })
 
 
-document.addEventListener('devicemotion', e => {
-    const moveX = (e.accelerationIncludingGravity.x / 10) * -1;
-    const moveY = (e.accelerationIncludingGravity.y / 10) * -1;
-    Object.assign(document.documentElement, {
-        style: `
-        --move-x: ${moveX}deg;
-        --move-y: ${moveY}deg;
-        `
-    })
-});
+if (window.DeviceMotionEvent) {
+    // Прискорювач підтримується на цьому пристрої
+    window.addEventListener('devicemotion', e => {
+        const moveX = (e.accelerationIncludingGravity.x / 10) * -1;
+        const moveY = (e.accelerationIncludingGravity.y / 10) * -1;
+        Object.assign(document.documentElement.style, {
+            '--move-x': `${moveX}deg`,
+            '--move-y': `${moveY}deg`
+        });
+    });
+} else {
+    console.log("Прискорювач не підтримується на цьому пристрої.");
+}
 
 
 
