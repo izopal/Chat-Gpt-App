@@ -67,18 +67,18 @@ section .layers_container .item.layer_2 a {
 section .layers_container .item.layer_3 {
     transform: translateZ(120px) scale(.88);
 }
-section .layers__container .item.layer_4 {
+section .layers_container .item.layer_4 {
     transform: translateZ(180px) scale(.95);
 }
 section .layers_container .item.layer_5 {
     transform: translateZ(280px) scale(.95);
 }
-section .layers__container .item.layer_6 {
+section .layers_container .item.layer_6 {
     transform: translateZ(300px);
 }
-.layer_3, .layer_4, .layer_5, .layer_6{
+/* .layer_3, .layer_4, .layer_5, .layer_6{
     pointer-events: none;
-}
+} */
 
 
 /* ==============================================================================================> */

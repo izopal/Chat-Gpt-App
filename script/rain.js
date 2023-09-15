@@ -6,7 +6,7 @@ canvas.height = window.innerHeight;
 const rainCount = 140;
 const maxHeight = 10;
 const minHeight = 0.2;
-const maxSpeed  = 20;
+const maxSpeed  = 10;
 const minSpeed  = 5;
 
 class Rain{
@@ -22,15 +22,20 @@ class Rain{
 		this.rainY < this.onGround ? this.rainY += this.rainSpeed :
 		                             this.rainY  = this.rainHeigh - 100;
  		}
-	draw(ctx) {
-		ctx.globalAlpha = this.opacity;              // Змінюємо прозорість крапель
-		ctx.beginPath();
-		ctx.moveTo(this.rainX, this.rainY);
-		ctx.lineTo(this.rainX, this.rainY - this.rainHeigh);
-		ctx.lineWidth = 1;
-		ctx.strokeStyle= 'rgba(255, 255, 255, 1)';
-		ctx.stroke();
-	}
+		 draw(ctx) {
+			ctx.globalAlpha = this.opacity;
+			ctx.beginPath();
+			ctx.moveTo(this.rainX, this.rainY);
+			ctx.lineTo(this.rainX, this.rainY + this.rainHeigh * 2);                                  // Змінюємо координати для нижньої точки
+			ctx.lineWidth = Math.random() * 2 + 1;                                                // Випадкова товщина лінії
+			const randomGray = Math.floor(Math.random() * 156 + 100);                             // Випадковий відтінок сірого
+			ctx.strokeStyle = `rgba(${randomGray},${randomGray},${randomGray}, ${this.opacity})`; // Випадковий колір
+			ctx.shadowBlur = 10;                                                                  // Додаємо ефект розмиття
+			ctx.shadowColor = 'white';                                                            // Колір розмиття
+			ctx.stroke();
+			ctx.shadowBlur = 0;                                                                   // Скидаємо ефект розмиття
+		}
+	
 }
 
 const rainArray = [];
