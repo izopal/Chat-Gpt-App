@@ -10,24 +10,36 @@ document.addEventListener('mousemove', e => {
 })
 
 
-if (window.DeviceMotionEvent) {
-    // Прискорювач підтримується на цьому пристрої
-    window.addEventListener('devicemotion', e => {
-        const moveX = (e.accelerationIncludingGravity.x / 10) * -1;
-        const moveY = (e.accelerationIncludingGravity.y / 10) * -1;
+// if (window.DeviceMotionEvent) {
+//     // Прискорювач підтримується на цьому пристрої
+//     window.addEventListener('devicemotion', e => {
+//         const moveX = (e.accelerationIncludingGravity.x / 10) * -1;
+//         const moveY = (e.accelerationIncludingGravity.y / 10) * -1;
+//         Object.assign(document.documentElement.style, {
+//             '--move-x': `${moveX}deg`,
+//             '--move-y': `${moveY}deg`
+//         });
+//     });
+// } else {
+//     console.log("Прискорювач не підтримується на цьому пристрої.");
+// }
+
+
+
+
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', e => {
+        const moveX = (e.gamma / 10) * -1;                             // конвертація значення gamma(кут нахилу пристрою вліво або вправо) в кутовий рух
+        const moveY = (e.beta / 10) * -1;                             // конвертація значення beta (кут нахилу пристрою вперед або назад) в кутовий рух
         Object.assign(document.documentElement.style, {
             '--move-x': `${moveX}deg`,
             '--move-y': `${moveY}deg`
         });
     });
 } else {
-    console.log("Прискорювач не підтримується на цьому пристрої.");
+    console.log("API прискорювача не підтримується на цьому пристрої.");
 }
-
-
-
-
-
 
 
 
