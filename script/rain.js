@@ -35,7 +35,6 @@ class Rain{
 			ctx.stroke();
 			ctx.shadowBlur = 0;                                                                   // Скидаємо ефект розмиття
 		}
-	
 }
 
 const rainArray = [];

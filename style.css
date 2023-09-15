@@ -57,7 +57,7 @@ section .layers_container .item.layer_1 {
     transform: translateZ(-60px) scale(1.06);
 }
 section .layers_container .item.layer_2 {
-    transform: translateZ(60px) scale(.85);
+    transform: translateZ(60px) scale(.95);
 }
 section .layers_container .item.layer_2 a {
     font-size: calc(var(--index) * 1.125);
@@ -68,10 +68,10 @@ section .layers_container .item.layer_3 {
     transform: translateZ(120px) scale(.88);
 }
 section .layers_container .item.layer_4 {
-    transform: translateZ(180px) scale(.95);
+    transform: translateZ(180px) scale(.85);
 }
 section .layers_container .item.layer_5 {
-    transform: translateZ(280px) scale(.95);
+    transform: translateZ(280px) scale(.80);
 }
 section .layers_container .item.layer_6 {
     transform: translateZ(300px);
