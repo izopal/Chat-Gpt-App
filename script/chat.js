@@ -1,20 +1,41 @@
+const initialHeight = textarea.clientHeight;             // Зберігаємо початкову висоту
 
-sendBtn.addEventListener('click', sendMessage);
+textarea.addEventListener('input', () => {
+  textarea.style.height = 'auto';                        // Спочатку встановлюємо висоту на автоматичну
+  textarea.style.height = `${textarea.scrollHeight}px`;  // Встановлюємо висоту, яка дорівнює висоті вмісту
+});
 
-userInput.addEventListener('keydown', e => {
-  iconClose.style.display = userInput.value !== '' ? 'block' : 'none';
-  if(e.key === 'Enter'){
+
+
+textarea.addEventListener('keydown', e => {
+  iconClose.style.display = textarea.value !== '' ? 'block' : 'none';
+  if(e.key === 'Enter') {
+    e.preventDefault();                                     // Забороняємо дійсну подію переходу на новий рядок
     sendMessage();
+    textarea.value = "";                                    // Очищаємо поле textarea
+    textarea.style.height = `${initialHeight}px`;           // Встановлюємо початкову висоту
   }
 })
 
 iconClose.addEventListener('click', () => {
-  userInput.value = '';
+  textarea.value = "";   
   iconClose.style.display = 'none';
+  textarea.style.height = `${initialHeight}px`;           // Встановлюємо початкову висоту
 });  
 
+sendBtn.addEventListener('click', e =>{
+  sendMessage();
+  textarea.value = "";
+  textarea.style.height = `${initialHeight}px`;           // Встановлюємо початкову висоту
+});
+
+
+
+
+const userMessages = [];                                       // Масив для зберігання повідомлень користувача
+
 function sendMessage(){
-  const messages = userInput.value.trim();
+  const messages = textarea.value.trim();
   const options = {
     method: "POST",
     headers: {
@@ -25,26 +46,26 @@ function sendMessage(){
                               model: "gpt-3.5-turbo",
                               messages: [{
                                           role:    "user", 
-                                          content: userInput.value,
+                                          content: textarea.value,
                                       }],
-                              max_tokens: 30,
+                              max_tokens: 70,
     })
   };
   if(messages !==''){
     appendMessage('user', messages);
-    userInput.value = "";
+   
     fetch ('https://api.openai.com/v1/chat/completions', options)
       .then((response) => response.json())
       .then((data) => {
           appendMessage('bot', data.choices[0].message.content);
-          sendBtn.classList.add('fa-solid', 'fa-paper-plane');
-          sendBtn.classList.remove('fas', 'fa-spinner', 'fa-pulse');
-    })
+          iconSend.style.display ='block';
+          iconSpiner.style.display ='none';
+      })
       .catch((error) =>{
           if(error.name === 'TypeError'){
             appendMessage('bot', 'Помилка: Провірте, ваш apiKey');
-            sendBtn.classList.add('fa-solid', 'fa-paper-plane');
-            sendBtn.classList.remove('fas', 'fa-spinner', 'fa-pulse');
+            iconSend.style.display ='block';
+            iconSpiner.style.display ='none';
           }
     });
   }
@@ -53,14 +74,13 @@ function sendMessage(){
 
 
 function appendMessage(sender, messages){
-  MSakal.style.display ='none';  
-  iconClose.style.display = 'none';
-  sendBtn.classList.remove('fa-solid', 'fa-paper-plane');
-  sendBtn.classList.add('fas', 'fa-spinner', 'fa-pulse');
-
+  MSakal.style.display     = 'none';  
+  iconClose.style.display  = 'none';
+  iconSend.style.display   = 'none';
+  iconSpiner.style.display = 'block';
+ 
   const chatElement    = document.createElement('div');
   const iconElement    = document.createElement('div');
-  const icon           = document.createElement('div');
   const messageElement = document.createElement('div');
 
   chatElement.classList.add('chat-box');
@@ -68,17 +88,16 @@ function appendMessage(sender, messages){
   messageElement.classList.add('sender');
   
   messageElement.innerText = messages;
-
-  if(sender === 'user'){
-    iconElement.style.backgroundImage = 'url(./img/user.png)'
-  }else{
-    iconElement.style.backgroundImage = 'url(./img/bot.png)'
-  }
-
+  if(sender === 'user') {
+    chatElement.classList.add('user');
+    iconElement.style.backgroundImage = 'url(./img/user.png)';
+  } else {
+    chatElement.classList.add('bot');
+    iconElement.style.backgroundImage = 'url(./img/bot.png)';
+  };
  
-  chatElement.appendChild(iconElement);
-  chatElement.appendChild(messageElement);
-
+  chatElement.append(iconElement, messageElement);
+  
   chatLog.appendChild(chatElement);
   chatLog.scrollTo = chatLog.scrollHeight;
 

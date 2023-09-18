@@ -15,6 +15,7 @@ body.addEventListener('mousemove', (e) => {
   }
 });
 
+
 body.addEventListener('touchmove', (e) => {
   const offsetX = (e.changedTouches[0].pageX - window.innerWidth * 0.5) * 0.05;
   const clampedOffsetX = Math.min(Math.max(offsetX, -angle), angle);
@@ -25,8 +26,15 @@ body.addEventListener('touchmove', (e) => {
   layers.style.setProperty('--move-y', `${clampedOffsetY}deg`);
 });
 
-
-
+// Повернення до початкового положення, наприклад, зі зміною кутів до нуля.
+body.addEventListener('mouseup', () => {
+  layers.style.setProperty('--move-x', '0deg');
+  layers.style.setProperty('--move-y', '0deg');
+});
+body.addEventListener('touchend', () => {
+  layers.style.setProperty('--move-x', '0deg');
+  layers.style.setProperty('--move-y', '0deg');
+});
 
 // body.addEventListener('devicemotion', e => {
 //     console.log(e);

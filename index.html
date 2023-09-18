@@ -24,7 +24,7 @@
 			<div class="item layer_1" style="background-image: url(./img/layer-1.jpg);"></div>
 			<div class="item layer_2">
                     <div class="box chat">
-                        <div id="chat-log"></div>
+                        <div class="chat-log"></div>
                         <a id="MSakal" href="https://github.com/izopal" target="_blank">coded by M.Sakal</a>
                     </div>
             </div>
@@ -43,13 +43,16 @@
            
           
             <div class="box input">
-                <input id="user-input" type="text" placeholder="Відправити повідомлення ...">
+                <textarea  id="user-input" type="text" rows="1" cols="10" placeholder="Відправити повідомлення ..."></textarea>
                 <button id="btn send">
                     <span class="icon send">
-                        <svg width="24" 
-                             height="36" 
-                             viewBox="0 0 24 24">
-                            <path d="m21.426 11.095-17-8A1 1 0 0 0 3.03 4.242l1.212 4.849L12 12l-7.758 2.909-1.212 4.849a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81z"/>
+                        <svg viewBox="0 0 512 512">
+                             <path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/>
+                        </svg>
+                    </span>  
+                    <span class="icon spiner">
+                        <svg viewBox="0 0 512 512">
+                             <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
                         </svg>
                     </span>
                 </button>
