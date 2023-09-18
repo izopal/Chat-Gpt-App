@@ -29,11 +29,6 @@ sendBtn.addEventListener('click', e =>{
   textarea.style.height = `${initialHeight}px`;           // Встановлюємо початкову висоту
 });
 
-
-
-
-const userMessages = [];                                       // Масив для зберігання повідомлень користувача
-
 function sendMessage(){
   const messages = textarea.value.trim();
   const options = {

@@ -1,4 +1,4 @@
-const apiKey      = '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';
+const apiKey      = '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';
 const chatLog     = document.querySelector('.layers_container .item.layer_2 .box.chat .chat-log'),
       MSakal      = document.getElementById('MSakal'),
       textarea    = document.getElementById('user-input'),

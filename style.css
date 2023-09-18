@@ -91,7 +91,6 @@ section .layers_container .item.layer_2 .box.chat .chat-box.bot {
     justify-content: start;
 }
 section .layers_container .item.layer_2 .box.chat .chat-box .sender{
-    /* display: flex; */
     justify-content: center;
     --border-size: calc(var(--index) * .1);
     padding: calc(var(--index) * .25) calc(var(--index) * .75);
@@ -108,8 +107,6 @@ section .layers_container .item.layer_2 .box.chat .chat-box.user .sender{
 section .layers_container .item.layer_2 .box.chat .chat-box.bot .sender{
     border: var(--border-size) solid var(--color);
     background-color:transparent;
-    /* backdrop-filter: blur(20px);  */
-    /* color: black; */
 }
 section .layers_container .item.layer_2 .box.chat .chat-box .icon{
     height: 100%;
