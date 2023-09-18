@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat GPT</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script/app.js" defer></script>
-    <script src="./script/iconClose.js" defer></script>
-    <script src="./script/rain.js" defer></script>
+    
+    <script src="./script/const.js" defer></script>
+    <script src="./script/input.js" defer></script>
+    <script src="./script/chat.js" defer></script>
+
+    <!-- <script src="./script/rain.js" defer></script> -->
+
+ 
  
 </head>
 <body>
@@ -18,7 +23,10 @@
 		<div class="layers_container">
 			<div class="item layer_1" style="background-image: url(./img/layer-1.jpg);"></div>
 			<div class="item layer_2">
-                <a href="https://github.com/izopal" target="_blank">coded by M.Sakal</a>
+                    <div class="box chat">
+                        <div id="chat-log"></div>
+                        <a id="MSakal" href="https://github.com/izopal" target="_blank">coded by M.Sakal</a>
+                    </div>
             </div>
             <div class="item layer_3">
                 <canvas id="canvas"></canvas>
@@ -26,15 +34,14 @@
             <div class="item layer_4" style="background-image: url(./img/layer-3.png);"></div>
             <div class="item layer_5" style="background-image: url(./img/layer-5.png);"></div>
 			<div class="item layer_6" style="background-image: url(./img/layer-6.png);"></div>
+			
 		</div>
         <div class="chat">
             <div class="header">
                 <h3>ChatGPT Bot</h3>
             </div>
            
-            <div class="box chat">
-                <div id="chat-log"></div>
-            </div>
+          
             <div class="box input">
                 <input id="user-input" type="text" placeholder="Відправити повідомлення ...">
                 <button id="btn send">
@@ -54,8 +61,6 @@
             </div>
         </div>
 	</section>
-
-    
   
 </body>
 </html>
