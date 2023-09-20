@@ -4,7 +4,6 @@ body.addEventListener('wheel', () => {
   chat.style.zIndex        = '-1';                      // Встановлюємо менше значення z-index
 });
 
-
 const angle = 7.5;
 body.addEventListener('mousemove', (e) => {
   chat.style.pointerEvents = 'all';
