@@ -1,4 +1,4 @@
-const apiKey      = 'YOUR_API_KEY';
+const apiKey      = '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';
 const maxTokens   = 100;
 
 const body        = document.body,
