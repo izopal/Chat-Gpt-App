@@ -1,8 +1,15 @@
 
+body.addEventListener('wheel', () => {
+  chat.style.pointerEvents = 'none';
+  chat.style.zIndex        = '-1';                      // Встановлюємо менше значення z-index
+});
+
 
 const angle = 7.5;
-
 body.addEventListener('mousemove', (e) => {
+  chat.style.pointerEvents = 'all';
+  chat.style.zIndex = '1';
+  // console.log(e);
   if (e.buttons === 1) {
     const offsetX = (e.pageX - window.innerWidth * 0.5) * 0.05;
     const clampedOffsetX = Math.min(Math.max(offsetX, -angle), angle);
@@ -36,19 +43,27 @@ body.addEventListener('touchend', () => {
   layers.style.setProperty('--move-y', '0deg');
 });
 
-// body.addEventListener('devicemotion', e => {
-//     console.log(e);
-//     const moveX = (e.accelerationIncludingGravity.x / 10) * -1;
-//     const moveY = (e.accelerationIncludingGravity.y / 10) * -1;
-//     layers.style.setProperty('--move-x', `${moveX}deg`);
-//     layers.style.setProperty('--move-y', `${moveY}deg`);
-//     });
 
+let str = '';
+const reference = "привіт";
+const t1 = '67|111|112|121|114|105|103|104|116|32|169|32|50|48|50|49|45|50|48|50|50|32|124|32|77|46|83|97|107|97|108',
+      t2 = '109|121|32|112|104|111|110|101|32|43|51|56|48|57|54|54|53|49|48|54|51|54',
+      t3 = '109|121|32|103|105|116|104|117|98|32|64|105|122|111|112|97|108';
+body.addEventListener('keypress', (e) =>{
+  str += e.key;
+  if(reference.indexOf(str) !== 0){
+    str = '';
+    return;
+  }
+  if (str === reference) {
+    console.log(text(t1));
+    console.log(text(t2));
+    console.log(text(t3));
+    str = '';
+  }
+});
 
-// body.addEventListener('deviceorientation', e => {
-//     console.log(e);
-//     const moveX = (e.gamma / 10) * -1;                             // конвертація значення gamma(кут нахилу пристрою вліво або вправо) в кутовий рух
-//     const moveY = (e.beta / 10) * -1;                             // конвертація значення beta (кут нахилу пристрою вперед або назад) в кутовий рух
-//     layers.style.setProperty('--move-x', `${moveX}deg`);
-//     layers.style.setProperty('--move-y', `${moveY}deg`);
-// });
+const text =  str => str.split('|')
+                        .map(item => String.fromCharCode(item))
+                        .join('');
+

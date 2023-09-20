@@ -6,11 +6,11 @@ canvas.height = window.innerHeight;
 const rainCount = 140;
 const maxHeight = 10;
 const minHeight = 0.2;
-const maxSpeed  = 10;
-const minSpeed  = 5;
+const maxSpeed  = 20;
+const minSpeed  = 15;
 
 class Rain{
-	constructor(x, y){
+	constructor(){
 		this.rainX     = Math.floor(Math.random() * canvas.width);
 		this.rainY     = Math.random() * -500;
 		this.rainHeigh = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
@@ -25,7 +25,7 @@ class Rain{
 		 draw(ctx) {
 			ctx.globalAlpha = this.opacity;
 			ctx.beginPath();
-			ctx.moveTo(this.rainX, this.rainY);
+			ctx.moveTo(this.rainX, this.rainY - this.rainHeigh);
 			ctx.lineTo(this.rainX, this.rainY + this.rainHeigh * 2);                                  // Змінюємо координати для нижньої точки
 			ctx.lineWidth = Math.random() * 2 + 1;                                                // Випадкова товщина лінії
 			const randomGray = Math.floor(Math.random() * 156 + 100);                             // Випадковий відтінок сірого

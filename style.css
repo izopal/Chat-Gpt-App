@@ -32,11 +32,11 @@ body{
 
 
 /* ==============================================================================================> */
-section {
+.layers {
     perspective: 1000px;
     overflow: hidden;  
 }
-section .layers_container {
+.layers .layers_container {
     position: relative;
     height: 100vh;
     transform-style: preserve-3d;
@@ -44,7 +44,7 @@ section .layers_container {
     will-change: transform;                                           /*вказуємо браузеру, що властивість `transform` може бути змінена, і браузер можна підготувати до цього, щоб покращити анімацію та продуктивність. */
     transition: transform var(--transition);
 }
-section .layers_container .item {
+.layers .layers_container .item {
     position: absolute;
     inset: -15vw;                                                    /* Внутрішній відступ -15vw від лівого, правого, верхнього та нижнього краю */
     display: flex;
@@ -53,75 +53,76 @@ section .layers_container .item {
     background-size: cover;
     background-position: center;
 }
-section .layers_container .item.layer_1 {
+.layers .layers_container .item.layer_1 {
     transform: translateZ(-60px) scale(1.06);
 }
-section .layers_container .item.layer_2 {
+.layers .layers_container .item.layer_2 {
     transform: translateZ(60px) scale(.95);
+}
+.layers .layers_container .item.layer_2 .box.chat{
+    position: absolute;
+    top: 15vw;
     display: flex;
     flex-direction: column-reverse;
+    padding: 5% 1%;
+    pointer-events: auto; 
 }
-section .layers_container .item.layer_2 .box.chat{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 60%;
-    overflow: hidden;
-}
-section .layers_container .item.layer_2 .box.chat .chat-log {
+.layers .layers_container .item.layer_2 .box.chat .chat-log {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-top: auto; 
+    overflow-y: scroll;
 }
-section .layers_container .item.layer_2 .box.chat .chat-box{
+ .layers .layers_container .item.layer_2 .box.chat .chat-log::-webkit-scrollbar {
+    width: 0px;                                   /* Ширина прокрутки */
+}
+
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box{
     display: flex;
-    align-items: center;
+    gap: calc(var(--index) * .5);
     width: 100%;
-    height: calc(var(--index) * 1.35);
-    margin: calc(var(--index) * .5625 ) 0px;
+    height: auto;
+    margin-top: calc(var(--index) * .5625 );
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.user {
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box.user {
    display: flex;
    justify-content:  end;
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.bot {
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box.bot {
     display: flex;
     justify-content: start;
 }
-section .layers_container .item.layer_2 .box.chat .chat-box .sender{
-    justify-content: center;
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box .sender{
     --border-size: calc(var(--index) * .1);
+    justify-content: center;
     padding: calc(var(--index) * .25) calc(var(--index) * .75);
     border-radius: .5rem;
 
+    color: var(--textColor);
+    font-size: calc(var(--index) * 1);
+    font-weight: 100;
+    font-family: kamerik-3d;
+    letter-spacing: calc(var(--index) * .05);
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.user .sender{
-    
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box.user .sender{
     order: 1;
     border: var(--border-size) solid var(--color);
     background-color: transparent;
-
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.bot .sender{
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box.bot .sender{
     border: var(--border-size) solid var(--color);
     background-color:transparent;
 }
-section .layers_container .item.layer_2 .box.chat .chat-box .icon{
-    height: 100%;
-    width: calc(var(--index) * 1.35);
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box .icon{
+    height: calc(var(--index) * 1.35);
+    min-width: calc(var(--index) * 1.35);
+    margin-top: auto;
     background-size: cover;
     background-position: center;
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.user .icon{
+.layers .layers_container .item.layer_2 .box.chat .chat-log .chat-box.user .icon{
     order: 2;
-    margin-left: calc(var(--index) * .525);
 }
-section .layers_container .item.layer_2 .box.chat .chat-box.bot .icon{
-    margin-right: calc(var(--index) * .525);
-}
-section .layers_container .item.layer_2 .box.chat a {
+.layers .layers_container .item.layer_2 .box.chat a {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -130,21 +131,24 @@ section .layers_container .item.layer_2 .box.chat a {
     color: var(--textColor);
     text-decoration: none;
 }
-
-section .layers_container .item.layer_3 {
+.layers .layers_container .item.layer_3 {
     transform: translateZ(120px) scale(.88);
 }
-section .layers_container .item.layer_4 {
+.layers .layers_container .item.layer_4 {
     transform: translateZ(180px) scale(.85);
 }
-section .layers_container .item.layer_5 {
+.layers .layers_container .item.layer_5 {
     transform: translateZ(280px) scale(.80);
 }
-section .layers_container .item.layer_6 {
+.layers .layers_container .item.layer_6 {
     transform: translateZ(300px);
+}
+.layer_3, .layer_4, .layer_5, .layer_6 {
+    pointer-events: none;
 }
 
 /* ==============================================================================================> */
+
 .chat {
     --chat-size: calc(var(--index) * 40);
 	position: absolute;
@@ -159,7 +163,7 @@ section .layers_container .item.layer_6 {
     flex-direction: column;
     justify-content: space-between;
 }
-.chat .header {
+ .chat .header {
     --border-size: calc(var(--index) * .1);
     display: flex;
     align-items: center;

@@ -43,16 +43,24 @@ function sendMessage(){
                                           role:    "user", 
                                           content: textarea.value,
                                       }],
-                              max_tokens: 70,
+                              max_tokens: maxTokens,
     })
   };
   if(messages !==''){
     appendMessage('user', messages);
-   
+    
+
     fetch ('https://api.openai.com/v1/chat/completions', options)
       .then((response) => response.json())
       .then((data) => {
-          appendMessage('bot', data.choices[0].message.content);
+        
+          let textBot = data.choices[0].message.content;
+          const lastSpaceIndex = textBot.lastIndexOf(' ');              // Знаходимо останній пробіл у рядку
+          const tokens = data.usage.completion_tokens;
+          
+          if(tokens === maxTokens){textBot = textBot.slice(0, lastSpaceIndex) + ' ...' };
+                  
+          appendMessage('bot', textBot);
           iconSend.style.display ='block';
           iconSpiner.style.display ='none';
       })
@@ -90,12 +98,10 @@ function appendMessage(sender, messages){
     chatElement.classList.add('bot');
     iconElement.style.backgroundImage = 'url(./img/bot.png)';
   };
- 
-  chatElement.append(iconElement, messageElement);
   
+  chatElement.append(iconElement, messageElement);
   chatLog.appendChild(chatElement);
-  chatLog.scrollTo = chatLog.scrollHeight;
-
+  chatLog.scrollTop = chatLog.scrollHeight;                       // Встановлюємо позицію прокрутки в найнижчу точку
 }
 
 

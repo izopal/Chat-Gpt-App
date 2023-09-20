@@ -17,9 +17,9 @@
  
 </head>
 <body>
-   
 
-    <section class="layers">
+    <div class="layers">
+
 		<div class="layers_container">
 			<div class="item layer_1" style="background-image: url(./img/layer-1.jpg);"></div>
 			<div class="item layer_2">
@@ -34,14 +34,12 @@
             <div class="item layer_4" style="background-image: url(./img/layer-3.png);"></div>
             <div class="item layer_5" style="background-image: url(./img/layer-5.png);"></div>
 			<div class="item layer_6" style="background-image: url(./img/layer-6.png);"></div>
-			
 		</div>
-        <div class="chat">
+
+        <div class="chat" id="chatID">
             <div class="header">
                 <h3>ChatGPT Bot</h3>
             </div>
-           
-          
             <div class="box input">
                 <textarea  id="user-input" type="text" rows="1" cols="10" placeholder="Відправити повідомлення ..."></textarea>
                 <button id="btn send">
@@ -63,7 +61,8 @@
                 </span>
             </div>
         </div>
-	</section>
+
+	</div>
   
 </body>
 </html>

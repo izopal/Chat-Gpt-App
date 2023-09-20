@@ -1,0 +1,3 @@
+// let str2    = 'text: your contacts';
+// let crypted = str2.split('').map(value => value.charCodeAt(0)).join('|');
+// console.log(crypted);
